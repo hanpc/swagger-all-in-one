@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="application.properties" />
+
+    <context id="swagger" defaultModelType="hierarchical" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"></property>
+            <property name="suppressDate" value="false"></property>
+        </commentGenerator>
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}"
+        />
+
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="${mapper.package.model}" targetProject="src/main/java">
+            <property name="constructorBased" value="false"/>
+            <property name="enableSubPackages" value="false"/>
+            <property name="immutable" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+
+        <sqlMapGenerator targetPackage="${mapper.package.sqlmapper}" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="${mapper.package.mapper}" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <table tableName="swagger_url">
+            <columnOverride column="create_time"  javaType="java.time.LocalDateTime" ></columnOverride>
+            <columnOverride column="update_time"  javaType="java.time.LocalDateTime" ></columnOverride>
+            <columnOverride column="valid"  javaType="java.lang.Boolean" ></columnOverride>
+        </table>
+
+    </context>
+
+</generatorConfiguration>
